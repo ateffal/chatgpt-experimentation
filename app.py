@@ -5,7 +5,7 @@ import openai
 import urllib.request
 from PIL import Image
 
-# openai.api_key = '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'
+openai.api_key = st.secrets["api_key"] #'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'
 
 st.set_page_config(
     page_title="Omdena Lublin Chapter: Financial Chatbot",
@@ -71,7 +71,6 @@ def model_response(question):
     restart_sequence = "\n\nQ: "
     response = openai.Completion.create(
         engine="text-davinci-003",
-        api_key=st.secrets["api_key"],
         prompt=restart_sequence+question+'\n\n###\n\n',
         temperature=0,
         # max tokens as response
