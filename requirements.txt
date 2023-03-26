@@ -1,0 +1,5 @@
+streamlit_chat
+requests
+openai
+urllib
+PIL
