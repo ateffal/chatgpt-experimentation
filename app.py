@@ -5,7 +5,7 @@ import openai
 import urllib.request
 from PIL import Image
 
-openai.api_key = st.secrets["api_key"] #'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'
+openai.api_key = st.secrets["api_key"] 
 
 st.set_page_config(
     page_title="Omdena Lublin Chapter: Financial Chatbot",
