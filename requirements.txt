@@ -1,4 +1,4 @@
 requests
 openai
-urllib
+urllib.request
 PIL
