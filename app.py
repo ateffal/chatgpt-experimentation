@@ -112,7 +112,7 @@ with tab2:
     st.header(
         "Text Summarizationunder construction....")
 
-    title = st.text_input('Text to summarize :')
+    title = st.text_area('Text to summarize :')
     
 
 
@@ -120,4 +120,4 @@ with tab3:
 
     st.header(
         "Classification under construction....")
-    title = st.text_input('Text classify :')
+    title = st.text_area('Text classify :')
