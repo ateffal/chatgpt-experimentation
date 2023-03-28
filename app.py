@@ -75,7 +75,7 @@ def model_response(question):
 
 
 st.set_page_config(
-    page_title="Omdena India Chapter: AI Tool for Linguistic and Psychometric Assessemnt")
+    page_title="Omdena India Chapter: AI Tool for Linguistic and Psychometric Assessement")
 
 
 st.image("images/Hyderabad-India-Chapter.png", caption=None,
@@ -88,6 +88,9 @@ st.caption("Disclaimer: This application is for showcasing code pushed to Github
 tab1, tab2, tab3 = st.tabs(["Ask question", "Summarization", "Classification"])
 
 with tab1:
+
+    st.header(
+        "Ask questions about soft skills")
 
     st.markdown(
         "Wondering how to  improve your soft skills ? Here is the solution!")
@@ -123,7 +126,7 @@ with tab1:
 with tab2:
 
     st.header(
-        "Text Summarization under construction....")
+        "Text Summarization")
     
     st.markdown(
         "Want to  summarize a short text ? Here is the solution!")
