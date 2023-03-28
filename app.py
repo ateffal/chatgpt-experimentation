@@ -18,6 +18,21 @@ def get_text():
     input_text = st.text_input("What is your question?", key="input")
     return input_text
 
+def get_text_to_summarize():
+    input_text = st.text_area("Text to summarize ", key="input_summ")
+    return input_text
+
+
+def chatGgpt_summarize_text(text_, temperature_ = 0.7, max_tokens_ = 256):
+    response = openai.Completion.create(engine="text-davinci-003",prompt='Summarize this for a second-grade student:\n\n' + text_,temperature=temperature_,
+            max_tokens=max_tokens_,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0,
+            # stop=["\n"]
+        )
+    return response["choices"][0]["text"]
+
 
 # def model_response(question):
 #     start_sequence = "A:"
@@ -108,9 +123,20 @@ with tab1:
 with tab2:
 
     st.header(
-        "Text Summarizationunder construction....")
+        "Text Summarization under construction....")
+    
+    st.markdown(
+        "Want to  summarize a short text ? Here is the solution!")
 
-    title = st.text_area('Text to summarize :')
+    st.markdown("Type the text and hit enter.")
+
+    user_input_summ = get_text_to_summarize()
+
+    output_summ = chatGgpt_summarize_text(user_input_summ)
+
+    message(output_summ)
+
+    # title = st.text_area('Text to summarize :')
     
 
 
