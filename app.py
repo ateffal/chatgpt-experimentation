@@ -83,7 +83,7 @@ st.image("images/Hyderabad-India-Chapter.png", caption=None,
 
 st.header("AI Tool for Linguistic and Psychometric Assessemnt")
 
-st.caption("Disclaimer: This application is for showcasing code pusued to Github. It is not a replacement for task-3 and task-4.")
+st.caption("Disclaimer: This application is for showcasing code pushed to Github. It is not a replacement for task-3 and task-4.")
 
 tab1, tab2, tab3 = st.tabs(["Ask question", "Summarization", "Classification"])
 
