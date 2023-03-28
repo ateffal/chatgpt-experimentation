@@ -81,7 +81,7 @@ st.set_page_config(
 st.image("images/Hyderabad-India-Chapter.png", caption=None,
          width=300, use_column_width=None, clamp=False, channels='RGB', output_format='auto')
 
-st.header("AI Tool for Linguistic and Psychometric Assessemnt")
+st.header("AI Tool for Linguistic and Psychometric Assessement")
 
 st.caption("Disclaimer: This application is for showcasing code pushed to Github. It is not a replacement for task-3 and task-4.")
 
@@ -137,7 +137,8 @@ with tab2:
 
     output_summ = chatGgpt_summarize_text(user_input_summ)
 
-    message(output_summ)
+    if user_input_summ:
+        message(output_summ)
 
     # title = st.text_area('Text to summarize :')
     
