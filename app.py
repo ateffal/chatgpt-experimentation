@@ -13,7 +13,10 @@ st.set_page_config(
 )
 
 
-st.image("https://i.ibb.co/H2z983v/Omdena-Lublin-Chapter.jpg", caption=None,
+# st.image("https://i.ibb.co/H2z983v/Omdena-Lublin-Chapter.jpg", caption=None,
+#          width=300, use_column_width=None, clamp=False, channels='RGB', output_format='auto')
+
+st.image("images/Hyderabad-India-Chapter.png", caption=None,
          width=300, use_column_width=None, clamp=False, channels='RGB', output_format='auto')
 
 st.header("AI Tool for Linguistic and Psychometric Assessemnt")
