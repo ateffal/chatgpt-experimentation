@@ -58,12 +58,14 @@ with tab1:
 
         user_input = get_text()
 
-        video = retrieve_audio(user_input, "")
+        if user_input:
 
-        video_file = open(video, 'rb')
-        video_bytes = video_file.read()
+                video = retrieve_audio(user_input, "")
 
-        st.video(video_bytes)
+                video_file = open(video, 'rb')
+                video_bytes = video_file.read()
+
+                st.video(video_bytes)
 
 
 
