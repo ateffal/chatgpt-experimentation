@@ -69,7 +69,7 @@ with tab1:
 
                 transcription = transcript_file(video)
 
-                st.text(transcription)
+                st.text_area(value= transcription)
 
 
 
