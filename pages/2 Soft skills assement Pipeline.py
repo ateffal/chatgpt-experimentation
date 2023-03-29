@@ -34,7 +34,7 @@ def transcript_file(path_file):
     start_time = time.time()
     audio_file= open(path_file, "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file)
-    print("Execution time : %s seconds." % (time.time() - start_time))
+#     print("Execution time : %s seconds." % (time.time() - start_time))
     return transcript['text']
 
 
@@ -65,7 +65,11 @@ with tab1:
                 video_file = open(video, 'rb')
                 video_bytes = video_file.read()
 
-                st.video(video_bytes)
+                st.audio(video_bytes)
+
+                transcription = transcript_file(video)
+
+                st.text(transcription)
 
 
 
