@@ -54,7 +54,7 @@ tab1, tab2 = st.tabs(["ASR", "Text features extraction"])
 
 with tab1:
 
-        st.header("ASR - of a Youtube video")
+        st.header("ASR - of a Youtube video. Ex : https://www.youtube.com/watch?v=E9tXfQZx6CA&t=52s")
 
         user_input = get_text()
 
