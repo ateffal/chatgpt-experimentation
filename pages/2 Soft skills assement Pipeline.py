@@ -69,8 +69,8 @@ with tab1:
 
                 transcription, trans_time_ = transcript_file(video)
 
-                st.text('Execution time in seconds : ', trans_time_)
-                st.text('[', trans_time_/60, ' minutes.', ']')
+                st.text('Execution time in seconds : ' + str(trans_time_))
+                st.text('[' + str(int(trans_time_/60)) +  ' minutes.', ']')
 
                 st.text_area("", value= transcription, height=500)
 
