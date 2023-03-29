@@ -75,7 +75,7 @@ def model_response(question):
 
 
 st.set_page_config(
-    page_title="Omdena India Chapter: AI Tool for Linguistic and Psychometric Assessement")
+    page_title="Omdena India Chapter: AI Tool for Linguistic and Psychometric Assessment")
 
 
 st.image("images/Hyderabad-India-Chapter.png", caption=None,

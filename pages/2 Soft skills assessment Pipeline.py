@@ -39,13 +39,13 @@ def transcript_file(path_file):
 
 
 st.set_page_config(
-    page_title="Omdena India Chapter: AI Tool for Linguistic and Psychometric Assessement")
+    page_title="Omdena India Chapter: AI Tool for Linguistic and Psychometric Assessment")
 
 
 st.image("images/Hyderabad-India-Chapter.png", caption=None,
          width=300, use_column_width=None, clamp=False, channels='RGB', output_format='auto')
 
-st.header("AI Tool for Linguistic and Psychometric Assessement")
+st.header("AI Tool for Linguistic and Psychometric Assessment")
 
 st.caption("Disclaimer: This application is for showcasing code pushed to Github. It is not a replacement for task-3 and task-4.")
 
@@ -72,7 +72,7 @@ with tab1:
                 st.text('Execution time in seconds : ' + str(trans_time_))
                 st.text('[' + str(int(trans_time_/60)) +  ' minutes.]')
 
-                st.text_area("", value= transcription, height=500)
+                st.text_area("", value= transcription, height=800)
 
 
 
