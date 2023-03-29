@@ -34,8 +34,8 @@ def transcript_file(path_file):
     start_time = time.time()
     audio_file= open(path_file, "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file)
-#     print("Execution time : %s seconds." % (time.time() - start_time))
-    return transcript['text']
+    trans_time = time.time() - start_time
+    return transcript['text'], trans_time
 
 
 st.set_page_config(
@@ -67,9 +67,12 @@ with tab1:
 
                 st.audio(video_bytes)
 
-                transcription = transcript_file(video)
+                transcription, trans_time_ = transcript_file(video)
 
-                st.text_area("", value= transcription, height=100)
+                st.text('Execution time in seconds : ', trans_time_)
+                st.text('[', trans_time_/60, ' minutes.', ']')
+
+                st.text_area("", value= transcription, height=500)
 
 
 
