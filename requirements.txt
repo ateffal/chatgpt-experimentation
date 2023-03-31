@@ -8,6 +8,6 @@ spacy
 numpy
 pandas
 pytube
-pydub import
+pydub
 IPython
 pyannote.audio
