@@ -22,6 +22,9 @@ def get_text_to_summarize():
     input_text = st.text_area("Text to summarize ", key="input_summ")
     return input_text
 
+def get_text_to_classify():
+    input_text = st.text_area("Text to classify ", key="input_class")
+    return input_text
 
 def chatGgpt_summarize_text(text_, temperature_ = 0.7, max_tokens_ = 256):
     response = openai.Completion.create(engine="text-davinci-003",prompt='Summarize this for a second-grade student:\n\n' + text_,temperature=temperature_,
@@ -32,6 +35,21 @@ def chatGgpt_summarize_text(text_, temperature_ = 0.7, max_tokens_ = 256):
             # stop=["\n"]
         )
     return response["choices"][0]["text"]
+
+
+def classify_into_soft_skill(text_):
+
+  response = openai.Completion.create(
+    model="text-davinci-003",
+    prompt="To which soft skills category bolongs this text : \n" +  text_ + "\n\ncategory : ",
+    temperature=0.7,
+    max_tokens=256,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0
+  )
+
+  return response["choices"][0]["text"]
 
 
 # def model_response(question):
@@ -146,6 +164,15 @@ with tab2:
 
 with tab3:
 
-    st.header(
-        "Classification under construction....")
-    title = st.text_area('Text classify :')
+    st.header("Classification of soft skills paragraphs")
+    
+
+    st.markdown("Type the text and hit enter.")
+
+    user_input_class = get_text_to_classify()
+
+    output_class = chatGgpt_summarize_text(user_input_class)
+
+    if user_input_class:
+        message(output_class)
+
