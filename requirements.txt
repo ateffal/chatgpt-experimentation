@@ -2,3 +2,12 @@ openai==0.27.2
 Pillow
 streamlit-chat
 pytube
+sox
+librosa
+spacy
+numpy
+pandas
+pytube
+pydub import
+IPython
+pyannote.audio
