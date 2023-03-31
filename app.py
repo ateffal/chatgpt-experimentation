@@ -171,7 +171,7 @@ with tab3:
 
     user_input_class = get_text_to_classify()
 
-    output_class = chatGgpt_summarize_text(user_input_class)
+    output_class = classify_into_soft_skill(user_input_class)
 
     if user_input_class:
         message(output_class)
