@@ -13,6 +13,7 @@ from pydub.utils import make_chunks
 import pyannote.audio as pa
 import pandas as pd
 import re
+import librosa
 
 openai.api_key = st.secrets["api_key"]
 pyannote_key = st.secrets["pyannote_key"]
@@ -76,6 +77,57 @@ def diarize_audio(path_file, from_ = 0 , to_ = 10):
     DEMO_FILE = {'uri': 'blabal', 'audio': path_file}
     dz = pipeline(DEMO_FILE)
     return dz
+
+
+
+def audio_features(audio_file, samplerate = 48000):
+  
+    features = []
+    mins = []
+    means = []
+    maxs = []
+    audio, sr = librosa.load(audio_file, sr=samplerate)
+    # flatness
+    feature = librosa.feature.spectral_flatness(y=audio)
+    features.append('spectral_flatness')
+    mins.append(feature.min())
+    means.append(feature.mean())
+    maxs.append(feature.max())
+
+    # rms
+    feature = librosa.feature.rms(y=audio)
+    features.append('rms')
+    mins.append(feature.min())
+    means.append(feature.mean())
+    maxs.append(feature.max())
+
+    # spectral_centroid
+    feature = librosa.feature.spectral_centroid(y=audio, sr=samplerate)
+    features.append('spectral_centroid')
+    mins.append(feature.min())
+    means.append(feature.mean())
+    maxs.append(feature.max())
+
+    # spectral_contrast
+    feature = librosa.feature.spectral_contrast(y=audio, sr=samplerate)
+    features.append('spectral_contrast')
+    mins.append(feature.min())
+    means.append(feature.mean())
+    maxs.append(feature.max())
+
+    # spectral_rolloff
+    feature = librosa.feature.spectral_rolloff(y=audio, sr=samplerate)
+    features.append('spectral_rolloff')
+    mins.append(feature.min())
+    means.append(feature.mean())
+    maxs.append(feature.max())
+
+    audio_files = [audio_file.split("/")[-1]] *len(features)
+
+
+    df = pd.DataFrame({'audio file': audio_files, 'feature' : features, 'min' : mins, 'mean' : means, 'max' : maxs})
+
+    return df
     
 
 
@@ -119,6 +171,8 @@ with tab1:
 
                 st.text_area("", value= transcription, height=800)
                 st.text(video)
+
+                df = audio_features(video_bytes)
                 # audio_ = convert_to_wav(video, "")
                 # st.text(audio_)
                 # dz = diarize_audio(video)
@@ -141,7 +195,7 @@ with tab1:
 
                 # df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
 
-                # st.dataframe(data=df)
+                st.dataframe(data=df)
 
                 
 
