@@ -10,7 +10,7 @@ pandas
 pytube
 pydub
 IPython
-pytorch
+torch
 torchvision
 torchaudio
 pyannote.audio
