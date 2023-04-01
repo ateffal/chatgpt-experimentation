@@ -98,7 +98,7 @@ with tab1:
 
                 st.text_area("", value= transcription, height=800)
 
-                dz = diarize_audio(video)
+                dz = diarize_audio(video_bytes)
 
                 # with open("diarization.txt", "w") as text_file:
                 #     text_file.write(str(dz))
