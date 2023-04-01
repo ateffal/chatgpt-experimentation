@@ -172,7 +172,7 @@ with tab1:
                 st.text_area("", value= transcription, height=800)
                 st.text(video)
 
-                df = audio_features(video_bytes)
+                df = audio_features(video)
                 # audio_ = convert_to_wav(video, "")
                 # st.text(audio_)
                 # dz = diarize_audio(video)
