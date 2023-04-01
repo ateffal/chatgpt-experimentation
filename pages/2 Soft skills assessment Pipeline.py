@@ -7,8 +7,13 @@ from PIL import Image
 import time
 import os
 from pytube import YouTube
+from pydub import AudioSegment
+from pydub.utils import make_chunks
+from pyannote.audio import Pipeline
+import pandas as pd
 
 openai.api_key = st.secrets["api_key"]
+pyannote_key = st.secrets["pyannote_key"]
 
 
 # This function scrapes the audio from a YouTube video and saves it in the output directory
@@ -36,6 +41,22 @@ def transcript_file(path_file):
     transcript = openai.Audio.transcribe("whisper-1", audio_file)
     trans_time = time.time() - start_time
     return transcript['text'], trans_time
+
+def diarize_audio(path_file, from_ = 0 , to_ = 10):
+    t1 = from_ * 1000 # works in milliseconds
+    t2 = to_ * 60 * 1000
+
+    newAudio = AudioSegment.from_wav(path_file)
+    a = newAudio[t1:t2]
+    a.export("audio.wav", format="wav")
+
+    pipeline = Pipeline.from_pretrained('pyannote/speaker-diarization', use_auth_token=pyannote_key)
+    DEMO_FILE = {'uri': 'blabal', 'audio': 'audio.wav'}
+    dz = pipeline(DEMO_FILE)
+    return dz
+    
+
+
 
 
 st.set_page_config(
@@ -74,6 +95,30 @@ with tab1:
                 st.text('[' + str(int(trans_time_/60)) +  ' minutes.]')
 
                 st.text_area("", value= transcription, height=800)
+
+                dz = diarize_audio(video)
+
+                with open("diarization.txt", "w") as text_file:
+                    text_file.write(str(dz))
+
+                turns = open('diarization.txt').read().splitlines()
+
+                starts = []
+                ends = []
+                speakers = []
+
+                for turn in turns:
+                    t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
+                    speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
+                    starts.append(t1)
+                    ends.append(t2)
+                    speakers.append(speaker[0])
+
+                df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
+
+                st.dataframe(data=df)
+                
+
 
 
 
