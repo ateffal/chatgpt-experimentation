@@ -9,7 +9,7 @@ import os
 from pytube import YouTube
 from pydub import AudioSegment
 from pydub.utils import make_chunks
-# from pyannote.audio import Pipeline
+from pyannote.audio import Pipeline
 import pandas as pd
 
 openai.api_key = st.secrets["api_key"]
@@ -96,27 +96,27 @@ with tab1:
 
                 st.text_area("", value= transcription, height=800)
 
-                # dz = diarize_audio(video)
+                dz = diarize_audio(video)
 
-                # with open("diarization.txt", "w") as text_file:
-                #     text_file.write(str(dz))
+                with open("diarization.txt", "w") as text_file:
+                    text_file.write(str(dz))
 
-                # turns = open('diarization.txt').read().splitlines()
+                turns = open('diarization.txt').read().splitlines()
 
-                # starts = []
-                # ends = []
-                # speakers = []
+                starts = []
+                ends = []
+                speakers = []
 
-                # for turn in turns:
-                #     t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
-                #     speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
-                #     starts.append(t1)
-                #     ends.append(t2)
-                #     speakers.append(speaker[0])
+                for turn in turns:
+                    t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
+                    speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
+                    starts.append(t1)
+                    ends.append(t2)
+                    speakers.append(speaker[0])
 
-                # df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
+                df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
 
-                # st.dataframe(data=df)
+                st.dataframe(data=df)
                 
 
 
