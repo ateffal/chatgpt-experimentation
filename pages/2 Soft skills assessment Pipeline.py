@@ -10,7 +10,7 @@ from pytube import YouTube
 from pydub import AudioSegment
 from pydub.utils import make_chunks
 # from pyannote.audio import Pipeline
-import pyannote.audio
+import pyannote.audio as pa
 import pandas as pd
 import re
 
@@ -71,7 +71,7 @@ def diarize_audio(path_file, from_ = 0 , to_ = 10):
     # a = newAudio[t1:t2]
     # a.export("audio.wav", format="wav")
 
-    pipeline = pyannote.audio.Pipeline.from_pretrained('pyannote/speaker-diarization', use_auth_token=pyannote_key)
+    pipeline = pa.Pipeline.from_pretrained('pyannote/speaker-diarization', use_auth_token=pyannote_key)
     
     DEMO_FILE = {'uri': 'blabal', 'audio': path_file}
     dz = pipeline(DEMO_FILE)
