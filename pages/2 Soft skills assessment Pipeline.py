@@ -67,13 +67,13 @@ def diarize_audio(path_file, from_ = 0 , to_ = 10):
     t1 = from_ * 1000 # works in milliseconds
     t2 = to_ * 60 * 1000
 
-    newAudio = AudioSegment.from_wav(path_file)
-    a = newAudio[t1:t2]
-    a.export("audio.wav", format="wav")
+    # newAudio = AudioSegment.from_wav(path_file)
+    # a = newAudio[t1:t2]
+    # a.export("audio.wav", format="wav")
 
     pipeline = pyannote.audio.Pipeline.from_pretrained('pyannote/speaker-diarization', use_auth_token=pyannote_key)
     
-    DEMO_FILE = {'uri': 'blabal', 'audio': 'audio.wav'}
+    DEMO_FILE = {'uri': 'blabal', 'audio': path_file}
     dz = pipeline(DEMO_FILE)
     return dz
     
