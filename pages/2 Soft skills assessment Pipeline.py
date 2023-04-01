@@ -100,25 +100,25 @@ with tab1:
 
                 dz = diarize_audio(video)
 
-                with open("diarization.txt", "w") as text_file:
-                    text_file.write(str(dz))
+                # with open("diarization.txt", "w") as text_file:
+                #     text_file.write(str(dz))
 
-                turns = open('diarization.txt').read().splitlines()
+                # turns = open('diarization.txt').read().splitlines()
 
-                starts = []
-                ends = []
-                speakers = []
+                # starts = []
+                # ends = []
+                # speakers = []
 
-                for turn in turns:
-                    t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
-                    speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
-                    starts.append(t1)
-                    ends.append(t2)
-                    speakers.append(speaker[0])
+                # for turn in turns:
+                #     t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
+                #     speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
+                #     starts.append(t1)
+                #     ends.append(t2)
+                #     speakers.append(speaker[0])
 
-                df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
+                # df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
 
-                st.dataframe(data=df)
+                # st.dataframe(data=df)
                 
 
 
