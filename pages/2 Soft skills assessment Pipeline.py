@@ -98,7 +98,7 @@ with tab1:
 
                 st.text_area("", value= transcription, height=800)
 
-                dz = diarize_audio(video_bytes)
+                # dz = diarize_audio(video)
 
                 # with open("diarization.txt", "w") as text_file:
                 #     text_file.write(str(dz))
@@ -119,6 +119,9 @@ with tab1:
                 # df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
 
                 # st.dataframe(data=df)
+
+                st.text(video)
+                
                 
 
 
