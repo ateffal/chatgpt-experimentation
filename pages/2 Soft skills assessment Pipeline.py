@@ -47,7 +47,7 @@ def convert_to_wav(input_path, output_dir):
 
     file_name = re.split("/|\.", input_path)[-2]
     file_name = file_name.replace(' ', '_')
-    audio = AudioSegment.from_file(input_path)
+    audio = AudioSegment.from_file('Role play  Business meeting.mp4')
     audio.export(f"{file_name}.wav", format='wav')
     
     return output_dir + file_name + '.wav'
