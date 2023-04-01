@@ -31,6 +31,25 @@ def retrieve_audio(video_link, output_dir):
     except:
         print("Connection error")
         return ""
+    
+# This function converts and audio file into the .wav format and saves it in the output directory
+# and returns the full path of the .wav file
+def convert_to_wav(input_path, output_dir):
+
+    """
+    This function converts and audio file into the .wav format and saves it in the output directory
+    """
+    
+    ROOT = os.getcwd()
+    output = os.path.join(ROOT, output_dir)
+    os.makedirs(output, exist_ok=True)
+
+    file_name = re.split("/|\.", input_path)[-2]
+    file_name = file_name.replace(' ', '_')
+    audio = AudioSegment.from_file(input_path)
+    audio.export(f"{output_dir}/{file_name}.wav", format='wav')
+    
+    return output_dir + file_name + '.wav'
 
 def get_text():
     input_text = st.text_input("Type the link of the Youtube video", key="input")
@@ -93,35 +112,38 @@ with tab1:
 
                 transcription, trans_time_ = transcript_file(video)
 
+                st.text('File name : ' + video)
                 st.text('Execution time in seconds : ' + str(trans_time_))
                 st.text('[' + str(int(trans_time_/60)) +  ' minutes.]')
 
                 st.text_area("", value= transcription, height=800)
 
-                # dz = diarize_audio(video)
+                audio_ = convert_to_wav(video, "")
 
-                # with open("diarization.txt", "w") as text_file:
-                #     text_file.write(str(dz))
+                dz = diarize_audio(audio_)
 
-                # turns = open('diarization.txt').read().splitlines()
+                with open("diarization.txt", "w") as text_file:
+                    text_file.write(str(dz))
 
-                # starts = []
-                # ends = []
-                # speakers = []
+                turns = open('diarization.txt').read().splitlines()
 
-                # for turn in turns:
-                #     t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
-                #     speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
-                #     starts.append(t1)
-                #     ends.append(t2)
-                #     speakers.append(speaker[0])
+                starts = []
+                ends = []
+                speakers = []
 
-                # df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
+                for turn in turns:
+                    t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
+                    speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
+                    starts.append(t1)
+                    ends.append(t2)
+                    speakers.append(speaker[0])
 
-                # st.dataframe(data=df)
+                df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
 
-                st.text(video)
+                st.dataframe(data=df)
+
                 
+
                 
 
 
