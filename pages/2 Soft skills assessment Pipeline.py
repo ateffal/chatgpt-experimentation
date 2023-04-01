@@ -27,7 +27,7 @@ def retrieve_audio(video_link, output_dir):
     """
     try:
         video = YouTube(video_link)
-        audio = video.streams.filter(only_audio=True, file_extension='wav').first()
+        audio = video.streams.filter(only_audio=True, file_extension='mp4').first()
         audio.download(output_dir)
         return output_dir  + audio.default_filename
     except:
