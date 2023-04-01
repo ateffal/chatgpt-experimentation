@@ -9,7 +9,8 @@ import os
 from pytube import YouTube
 from pydub import AudioSegment
 from pydub.utils import make_chunks
-from pyannote.audio import Pipeline
+# from pyannote.audio import Pipeline
+import pyannote.audio.pipelines
 import pandas as pd
 
 openai.api_key = st.secrets["api_key"]
