@@ -12,6 +12,7 @@ from pydub.utils import make_chunks
 # from pyannote.audio import Pipeline
 import pyannote.audio
 import pandas as pd
+import re
 
 openai.api_key = st.secrets["api_key"]
 pyannote_key = st.secrets["pyannote_key"]
