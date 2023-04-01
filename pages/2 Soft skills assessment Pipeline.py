@@ -118,7 +118,7 @@ with tab1:
                 st.text('[' + str(int(trans_time_/60)) +  ' minutes.]')
 
                 st.text_area("", value= transcription, height=800)
-
+                st.text(video)
                 audio_ = convert_to_wav(video, "")
                 st.text(audio_)
                 dz = diarize_audio(audio_)
