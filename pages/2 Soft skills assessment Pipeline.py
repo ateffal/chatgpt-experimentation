@@ -48,7 +48,7 @@ def convert_to_wav(input_path, output_dir):
     file_name = re.split("/|\.", input_path)[-2]
     file_name = file_name.replace(' ', '_')
     audio = AudioSegment.from_file(input_path)
-    audio.export(f"{output_dir}/{file_name}.wav", format='wav')
+    audio.export(f"{file_name}.wav", format='wav')
     
     return output_dir + file_name + '.wav'
 
@@ -119,29 +119,29 @@ with tab1:
 
                 st.text_area("", value= transcription, height=800)
 
-                # audio_ = convert_to_wav(video, "")
+                audio_ = convert_to_wav(video, "")
 
-                # dz = diarize_audio(audio_)
+                dz = diarize_audio(audio_)
 
-                # with open("diarization.txt", "w") as text_file:
-                #     text_file.write(str(dz))
+                with open("diarization.txt", "w") as text_file:
+                    text_file.write(str(dz))
 
-                # turns = open('diarization.txt').read().splitlines()
+                turns = open('diarization.txt').read().splitlines()
 
-                # starts = []
-                # ends = []
-                # speakers = []
+                starts = []
+                ends = []
+                speakers = []
 
-                # for turn in turns:
-                #     t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
-                #     speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
-                #     starts.append(t1)
-                #     ends.append(t2)
-                #     speakers.append(speaker[0])
+                for turn in turns:
+                    t1, t2 = re.findall('[0-9]+:[0-9]+:[0-9]+', string=turn)
+                    speaker = re.findall('SPEAKER_[0-9][0-9]', string=turn)
+                    starts.append(t1)
+                    ends.append(t2)
+                    speakers.append(speaker[0])
 
-                # df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
+                df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
 
-                # st.dataframe(data=df)
+                st.dataframe(data=df)
 
                 
 
