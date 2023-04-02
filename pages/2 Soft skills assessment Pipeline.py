@@ -195,7 +195,7 @@ with tab1:
 
                 # df = pd.DataFrame({'start' : starts, 'end' : ends , 'speaker': speakers})
 
-                st.dataframe(data=df)
+                # st.dataframe(data=df)
 
                 
 
